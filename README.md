@@ -27,6 +27,9 @@ Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs clas
 - Un objet `Carreau` représente un carreau du taquin.
 - Un objet `StatusBar` permet d'afficher le score et l'état de la partie.
 
+Le diagramme UML suivant donne un apperçu synthétique de la structure des classes de l'application :
+![UML](src/main/resources/diagram.png)
+
 Il y aura aussi plusieurs classes de moindre importance qui serviront d'outils pour les classes principales.
 
 L'objectif de ce test est d'évaluer votre capacité à écrire une IHM à l'aide du langage Java, les méthodes complexes 
