@@ -84,6 +84,15 @@ Pour simplifier, la case vide sera matérialisée par un carreau particulier, di
      - initialise la liste (vide) des carreaux avec un objet `ArrayList`
      - appelle la méthode `creerEcouteurDeCarreau()` (qui initialisera la variable d'instance `ecouteurDeCarreau`)
      - appelle la méthode `initCarreaux()`
+
+3. Écrire la méthode privée `initCarreaux()` qui crée tous les carreaux du plateau. Pour cela, elle :
+     - initialise à 0 une variable locale contenant le numéro du carreau courant
+     - utilise deux boucles imbriquées, l'une pour les lignes et l'autre pour les colonnes, pour créer les `taille` x `taille` objets `Carreau`. 
+     Pour la création de chacun des carreaux, il faut :
+          * incrémenter le numéro du carreau courant
+          * créer l'objet `Carreau` avec son numéro et sa `Position` (ligne et colonne)
+          * ajouter le carreau au `TaquinBoard` (qui est un `GridPane`)
+          * (to be continued)
      
 ### Implémentation de la classe `StatusBar`
 La classe `StatusBar` est un composant graphique permettant d'afficher l'état de la partie en cours. 
