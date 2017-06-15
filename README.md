@@ -49,18 +49,17 @@ La classe `StatusBar` est un composant graphique permettant d'afficher l'état d
 L'implémentation de cette classe vous est donnée ci-dessous :
 ```java
 public class StatusBar extends BorderPane {
-    private Label labelNombreDeMouvement;
-    private Label labelTemps;
-    private Label labelpartieTerminee;
+    private Label labelNombreDeMouvement = new Label();
+    private Label labelTemps = new Label();
+    private Label labelpartieTerminee = new Label();
 
-    private IntegerProperty nombreDeMouvement;
-    private BooleanProperty estPartieTerminee;
+    private IntegerProperty nombreDeMouvement = new SimpleIntegerProperty();
+    private BooleanProperty estPartieTerminee = new SimpleBooleanProperty();
 
-    private LocalTime time;
+    private LocalTime time = LocalTime.now();
     private Timeline timer;
-    private  StringProperty clock;
-    private  DateTimeFormatter fmt;
-
+    private  StringProperty clock = new SimpleStringProperty("00:00:00");
+    private  DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
 
     public StatusBar() {
         initialiser();
@@ -74,14 +73,6 @@ public class StatusBar extends BorderPane {
     }
 
     private void initialiser() {
-        labelpartieTerminee = new Label();
-        labelTemps = new Label();
-        labelNombreDeMouvement = new Label();
-        nombreDeMouvement = new SimpleIntegerProperty();
-        estPartieTerminee = new SimpleBooleanProperty();
-        time = LocalTime.now();
-        clock = new SimpleStringProperty("00:00:00");
-        fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
     }
 
     private void creerAnimation() {
