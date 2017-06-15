@@ -173,7 +173,7 @@ contient un menu "Jeu" constitué d'une entrée "Nouvelle Partie" et d'une entr�
 ses variables d’instance, toutes privées :
     - `taille` de type `int` représente la taille du plateau de jeu.
     - `statusBar` de type `StatusBar` est l'objet matérialisant la barre de statut
-    - `taquinBoard` de type `taquinBoard` est l'objet plateau de jeu
+    - `taquinBoard` de type `TaquinBoard` est l'objet plateau de jeu
     - `menuBar` de type `MenuBar` est la barre de menu de notre jeu
 
 2. Écrire la méthode `void nouvellePartie()` qui s'occupe de créer une nouvelle partie en effectuant le bon traitement 
