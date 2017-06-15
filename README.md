@@ -35,7 +35,7 @@ suivante : https://github.com/IUTInfoAix-m2105/TestIHM2017/
 
 Le résultat attendu devra ressembler à la fenêtre suivante :
 
-![IHM](src/main/resources/assets/screenshoot.png)
+![IHM](src/main/resources/assets/taquin_screenshot.png)
 
 ### Implémentation de la classe `Carreau`
 
