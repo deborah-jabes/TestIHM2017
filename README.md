@@ -19,7 +19,7 @@ L'image ci-dessous, illustre un jeu du taquin résolu :
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/15-puzzle.svg/768px-15-puzzle.svg.png)
 
-### Travail à réaliser
+### Travail à réalisercarreaux
 Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
 - Un objet `TaquinMain` est une application JavaFX permettant de jouer au Taquin.
 - Un objet `TaquinIHM` est une scène de jeu avec laquelle les joueurs interagiront pour faire une partie à tour de rôle.
@@ -41,6 +41,27 @@ Le résultat attendu devra ressembler à la fenêtre suivante :
 ![IHM](src/main/resources/assets/taquin_screenshot.png)
 
 ### Implémentation de la classe `Carreau`
+
+Le plateau de jeu du taquin sera composé de 16 cases, chacune contenant un carreau placé au départ sur une case au hasard, sauf la case vide.
+Chaque carreau est numéroté de 1 à 15, numéro de sa position voulue dans le plateau pour résoudre le jeu.
+
+1. Écrivez la classe `Carreau` qui sera publique et étendra `Button`. Elle possèdera les données membres privées suivantes :
+     - `value` de type `Integer` qui correspond au numéro du carreau. 
+     - `position` de type `Position`, la position courante dans le plateau.
+     - `positionVoulue` de type `Position`, la position finale voulue pour résoudre le jeu.
+
+2. Écrivez un constructeur publique `Carreau(Integer numero, Position position)` qui : 
+    - assigne les données membres locales correspondantes aux paramètres donnés.
+    - fixe la largeur et hauteur du `Carreau` à `TaquinBoard.CELL_SIZE`, soit la taille d'une cellule. On pourra pour cela utiliser les méthodes de `Button` `setMinSize()`, `setMaxSize()` et `setPrefSize()`.
+    - fixe l'alignement du contenu du carreau au centre.
+    - fixe comme texte du bouton le numéro du carreau courant.
+
+3. Écrivez les accesseurs publiques `getNumero()` et `getPosition()` qui renvoie leur donnée membre correspondante.
+
+4. Écrivez le modifieur `setPosition(Position position)` qui assigne la donnée membre correspondante.
+
+5. Écrivez la méthode `estBienPlace()` qui retourne vrai si le carreau est positionné à sa position finale voulue.
+
 
 ### Implémentation de la classe `TaquinBoard`
 

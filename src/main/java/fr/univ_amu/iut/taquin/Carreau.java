@@ -9,11 +9,11 @@ public class Carreau extends Button {
     private Position positionVoulue;
 
 
-    public Carreau(Integer numero, Position location) {
-        final int squareSize = TaquinBoard.CELL_SIZE - 13;
+    public Carreau(Integer numero, Position position) {
+        final int squareSize = TaquinBoard.CELL_SIZE;
         this.numero = numero;
-        this.position = location;
-        this.positionVoulue = location;
+        this.position = position;
+        this.positionVoulue = position;
 
         setMinSize(squareSize, squareSize);
         setMaxSize(squareSize, squareSize);
