@@ -2,6 +2,8 @@ package fr.univ_amu.iut.taquin;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class Carreau extends Button {
     private Integer numero;
@@ -22,6 +24,7 @@ public class Carreau extends Button {
         setAlignment(Pos.CENTER);
 
         setText(numero.toString());
+        setFont(Font.font("Monospace", FontWeight.BOLD, 20));
     }
 
     public Integer getNumero() {

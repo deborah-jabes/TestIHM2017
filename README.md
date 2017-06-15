@@ -165,6 +165,17 @@ changement qui appelle la méthode `afficheDialogFinDePartie()` lorsque la parti
 
 ### Implémentation de la classe `TaquinMain`
 
-1. Écrivez une méthode `main` aussi réduite que possible pour lancer l’exécution de tout cela.
+La classe `TaquinMain` est le programme principal de notre application. C'est elle qui a la responsabilité de 
+charger la vue principale et de l'ajouter à la scène. Cette classe est une application JavaFX qui étend donc `Application`.
+
+1. Écrire une méthode `main` aussi réduite que possible pour lancer l’exécution de l'application.
 
 
+2. Écrire la méthode `public void start(Stage primaryStage)`. Elle devra :
+    - Modifier le titre de la fenêtre en "Taquin".
+
+    - Créer un objet `TaquinIHM`
+    
+    - l'Ajouter le comme racine du graphe de scène.
+
+    - Rendre visible le stage.
