@@ -93,7 +93,22 @@ Pour simplifier, la case vide sera matérialisée par un carreau particulier, di
           * créer l'objet `Carreau` avec son numéro et sa `Position` (ligne et colonne)
           * ajouter le carreau au `TaquinBoard` (qui est un `GridPane`)
           * (to be continued)
-     
+
+4. Écrire la méthode `private void placer(Carreau carreau, Position position)` qui place le carreau dans la nouvelle position donnée 
+et fixe la position du `carreau` dans la `GridPane` en tant que contrainte (avec la méthode statique `GridPane.setConstraints()`).
+
+5. Écrire la méthode `private void permuter(Carreau carreau1, Carreau carreau2)` qui permute les positions des deux carreaux 
+donnés en paramètre à l'aide de la méthode `placer()` et incrémente le nombre de mouvements.
+
+6. Écrire la méthode `private void deplacer(Carreau carreau)` qui déplace le `carreau` s'il est adjacent à la case vide. Dans cette méthode, vous devrez :
+    - Créer une variable `positionCarreau` qui mémorise la position courante du carreau passé en paramètre.
+    - Créer une variable `positionVide` qui mémorise la position de la case vide (`carreauVide`).
+    - Créer des variables de type `Position` correspondant aux coordonnées à gauche, à droite, en haut et en bas de la position du carreau courant.
+    - Tester si l'une de ces positions correspond à celle de la case vide. Si tel est le cas, les permuter.
+
+7. Écrire la méthode `private void verifierFinDePartie()` qui fixe la propriété `estPartieTerminee` 
+comme vraie si tous les carreaux de la liste sont bien placés à leur position attendue en fin de partie.
+
 ### Implémentation de la classe `StatusBar`
 La classe `StatusBar` est un composant graphique permettant d'afficher l'état de la partie en cours. 
 L'implémentation de cette classe vous est donnée ci-dessous :
@@ -109,11 +124,9 @@ public class StatusBar extends BorderPane {
     private LocalTime time = LocalTime.now();
     private Timeline timer;
     private  StringProperty clock = new SimpleStringProperty("00:00:00");
-    private  DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+    private  DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public StatusBar() {
-        initialiser();
-
         creerAnimation();
         creerBindings();
 
@@ -122,11 +135,9 @@ public class StatusBar extends BorderPane {
         setCenter(labelpartieTerminee);
     }
 
-    private void initialiser() {
-    }
-
     private void creerAnimation() {
-        timer = new Timeline(new KeyFrame(Duration.ZERO, e-> clock.set(LocalTime.now().minusNanos(time.toNanoOfDay()).format(fmt))),
+        timer = new Timeline(new KeyFrame(Duration.ZERO, e-> 
+            clock.set(LocalTime.now().minusNanos(time.toNanoOfDay()).format(fmt))),
                 new KeyFrame(Duration.seconds(1)));
         timer.setCycleCount(Animation.INDEFINITE);
     }
