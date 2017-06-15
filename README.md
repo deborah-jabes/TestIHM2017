@@ -27,7 +27,8 @@ Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs clas
 - Un objet `Carreau` représente un carreau du taquin.
 - Un objet `StatusBar` permet d'afficher le score et l'état de la partie.
 
-Le diagramme UML suivant donne un apperçu synthétique de la structure des classes de l'application :
+Le diagramme UML suivant donne un apperçu synthétique de la structure des classes de l'application.
+Il n'est pas nécessaire de l'étudier pour l'instant, mais il pourra vous servir de référence pour retrouver les méthodes des différentes classes.
 ![UML](src/main/resources/diagram.png)
 
 Il y aura aussi plusieurs classes de moindre importance qui serviront d'outils pour les classes principales.
