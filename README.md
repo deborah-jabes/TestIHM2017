@@ -36,7 +36,7 @@ L'objectif de ce test est d'évaluer votre capacité à écrire une IHM à l'aid
 car trop algorithmiques n'auront pas à être implémentées. Vous pourrez retrouver une proposition de correction à l'adresse 
 suivante : https://github.com/IUTInfoAix-m2105/TestIHM2017/
 
-Le résultat attendu devra ressembler à la fenêtre suivante :
+Le résultat attendu devra ressembler à la fenêtre suivante (mais n'inclura pas la durée que l'on aperçoit au bas de la fenêtre):
 
 ![IHM](src/main/resources/assets/taquin_screenshot.png)
 
@@ -65,6 +65,26 @@ Chaque carreau est numéroté de 1 à 15, numéro de sa position voulue dans le 
 
 ### Implémentation de la classe `TaquinBoard`
 
+La classe `TaquinBoard` est un composant graphique qui hérite de `GridPane` pour représenter visuellement le plateau de jeu.
+Elle crée les carreaux du jeu, les place à une position aléatoire (mais solvable), et gère les coups du joueur.
+Pour simplifier, la case vide sera matérialisée par un carreau particulier, dit "vide".
+
+1. Écrire la déclaration d'une classe publique `TaquinBoard`, sous-classe de `GridPane`, réduite pour le moment à la déclaration des variables d'instance suivantes, toutes privées :
+     - `taille` de type `int` qui contiendra la taille en largeur et en hauteur du plateau, de laquelle on en déduira le nombre de carreaux, `taille` x `taille` (ce qui comprend le carreau vide).
+     - `carreaux` qui est une liste (`List`) d'objets `Carreau` que l'on sera créée et peuplée dans le constructeur
+     - `carreauVide` qui est le `Carreau` particulier de la liste `carreaux`, qui sera créé pour représenter la case vide
+     - `estPartieTerminee` qui est une **propriété booléenne** qui indiquera si la partie est terminée
+     - `nombreDeMouvement` qui est une **propriété entière** qui indiquera le nombre de coups (déplacements) joués au cours de la partie courante
+     - `ecouteurDeCarreau` qui est un gestionnaire des événements de type `ActionEvent` qui s'occupera de traiter les clics sur les carreaux, permettant au joueur de les déplacer
+
+2. Écrire le constructeur public `TaquinBoard(int taille)` qui :
+     - affecte à la variable d'instance correspondante la `taille` passée en paramètre
+     - crée et initialise à `false` sa propriété `estPartieTerminee`
+     - crée et initialise à 0 sa propriété `nombreDeMouvement`
+     - initialise la liste (vide) des carreaux avec un objet `ArrayList`
+     - appelle la méthode `creerEcouteurDeCarreau()` (qui initialisera la variable d'instance `ecouteurDeCarreau`)
+     - appelle la méthode `initCarreaux()`
+     
 ### Implémentation de la classe `StatusBar`
 La classe `StatusBar` est un composant graphique permettant d'afficher l'état de la partie en cours. 
 L'implémentation de cette classe vous est donnée ci-dessous :
