@@ -52,7 +52,7 @@ Chaque carreau est numéroté de 1 à 15, numéro de sa position voulue dans le 
 
 2. Écrivez un constructeur publique `Carreau(Integer numero, Position position)` qui : 
     - assigne les données membres locales correspondantes aux paramètres donnés.
-    - fixe la largeur et hauteur du `Carreau` à `TaquinBoard.CELL_SIZE`, soit la taille d'une cellule. On pourra pour cela utiliser les méthodes de `Button` `setMinSize()`, `setMaxSize()` et `setPrefSize()`.
+    - fixe la largeur et hauteur du `Carreau` à `TaquinBoard.CELL_SIZE`, soit la taille d'une cellule. Utilisez les méthodes de `Button` : `setMinSize()`, `setMaxSize()` et `setPrefSize()`.
     - fixe l'alignement du contenu du carreau au centre.
     - fixe comme texte du bouton le numéro du carreau courant.
 
