@@ -17,7 +17,7 @@ considéré comme l'un des « descendants » du taquin.
 
 L'image ci-dessous, illustre un jeu du taquin résolu :
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/15-puzzle.svg/768px-15-puzzle.svg.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/15-puzzle.svg/400px-15-puzzle.svg.png)
 
 ### Travail à réaliser
 Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
