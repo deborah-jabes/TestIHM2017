@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class TaquinBoard extends GridPane {
 
-    public static final int CELL_SIZE = 200;
+    public static final int CELL_SIZE = 100;
     private List<Carreau> carreaux;
     private int taille;
 
