@@ -10,7 +10,7 @@ en 1879. En 1891, son invention fut revendiquée par Sam Loyd, au moment où le 
 tant aux États-Unis qu'en Europe. 
 
 Il est composé de 15 petits **carreaux numérotés de 1 à 15** qui glissent dans un cadre 8x8, prévu pour 16. Il consiste à 
-remettre dans l'ordre les 15 carreaux à partir d'une configuration initiale quelconque par des déplacements (glissements) d'un carreau voisin de la **case vide** jusqu'à former la configuration solution. Le principe a été étendu à 
+remettre dans l'ordre les 15 carreaux à partir d'une configuration initiale quelconque par des déplacements (glissements) de carreaus voisins de la **case vide** jusqu'à former la configuration solution. Le principe a été étendu à 
 toutes sortes d'autres jeux. La plupart sont à base de *blocs* rectangulaires plutôt que carrés, mais le but est toujours 
 de disposer les blocs d'une façon déterminée par un nombre minimal de mouvements. Le Rubik's Cube est aujourd'hui 
 considéré comme l'un des « descendants » du taquin.
@@ -21,19 +21,19 @@ L'image ci-dessous, illustre un jeu du taquin résolu :
 
 ### Travail à réaliser
 
-L'IHM que vous allez réaliser ressemblra à la fenêtre suivante (mais n'inclura pas la durée que l'on aperçoit au bas de la fenêtre):
+L'IHM que vous allez en partie réaliser ressemblera à la fenêtre suivante :
 
 ![IHM](src/main/resources/assets/taquin_screenshot.png)
 
 Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
 - Un objet `TaquinMain` est une application JavaFX permettant de jouer au Taquin.
-- Un objet `TaquinIHM` est la racine de la scene de jeu (l'intérieur de la fenêtre de l'image), composée d'un menu, d'un plateau de jeu et d'une barre d'état.
-- Un objet `TaquinBoard` représente le plateau de jeu composé des 16 cases.
+- Un objet `TaquinIHM` est la racine de la scene de jeu (l'intérieur de la fenêtre de l'image).
+- Un objet `TaquinBoard` est le plateau de jeu composé des 16 cases, que l'on voit au centre du `TaquinIHM`
 - Un objet `Carreau` représente un carreau du taquin.
-- Un objet `StatusBar` permet d'afficher le score et l'état de la partie.
+- Un objet `StatusBar` est la barre en bas du `TaquinIHM` qui affiche le score et l'état de la partie.
 
 Le diagramme UML suivant donne un apperçu synthétique de la structure des classes de l'application.
-Il n'est pas nécessaire de l'étudier pour l'instant, mais il pourra vous servir de référence pour retrouver les méthodes des différentes classes.
+Il n'est pas nécessaire de l'étudier pour l'instant, mais il vous sera très utile pour retrouver les méthodes des différentes classes.
 ![UML](src/main/resources/diagram.png)
 
 Il y aura aussi plusieurs classes de moindre importance qui serviront d'outils pour les classes principales.
@@ -55,12 +55,12 @@ Chaque carreau est numéroté de 1 à 15, sera placé au hasard sur une case en 
      - `positionAttendue` de type `Position`, la position attendue en fin de jeu.
 
 2. Écrire le constructeur public `Carreau(Integer numero, Position position)` qui : 
-    - assigne les données membres aux paramètres donnés correspondants, sachant que la position indiquée lors de la création du carreau correspond à sa position attendue, ainsi qu'à sa position courante (avant mélange du plateau).
-    - fixe la largeur et la hauteur du `Carreau` à `TaquinBoard.CELL_SIZE`, soit la taille d'une cellule. Aide : utilisez les méthodes `setMinSize()`, `setMaxSize()` et `setPrefSize()` qu'un `Carreau` hérite de `Button`.
-    - fixe l'alignement du contenu du carreau au centre.
-    - fixe comme texte du bouton le numéro du carreau courant.
+    - Assigne les données membres aux paramètres donnés correspondants, sachant que la `position` en paramètre correspond à sa position attendue, ainsi qu'à sa position initiale avant mélange.
+    - Fixe la largeur et la hauteur du `Carreau` à `TaquinBoard.CELL_SIZE`, soit la taille d'une cellule. Aide : utilisez les méthodes `setMinSize()`, `setMaxSize()` et `setPrefSize()` qu'un `Carreau` hérite de `Button`.
+    - Fixe l'alignement du contenu du carreau au centre.
+    - Fixe comme texte du bouton le numéro du carreau courant.
 
-3. Écrire les accesseurs publics `getNumero()` et `getPosition()` qui renvoient la donnée membre correspondante.
+3. Écrire les accesseurs publics `getValue()` et `getPosition()` qui renvoient la donnée membre correspondante.
 
 4. Écrire le modifieur public `setPosition(Position position)` qui assigne la donnée membre correspondante.
 
@@ -77,99 +77,83 @@ Pour simplifier, la case vide sera matérialisée par un carreau particulier, di
      - `taille` de type `int` qui contiendra la taille en largeur et en hauteur du plateau, de laquelle on en déduira le nombre de carreaux : `taille` x `taille` (ce qui comprend le carreau vide).
      - `carreaux` qui est une liste (`List`) d'objets `Carreau`, créée et peuplée dans le constructeur
      - `carreauVide` qui est le `Carreau` particulier de la liste `carreaux` qui représente la case vide
-     - `estPartieTerminee` qui est une **propriété booléenne** qui indique si la partie est terminée
-     - `nombreDeMouvement` qui est une **propriété entière** qui indique le nombre de coups (déplacements) joués au cours de la partie courante
-     - `ecouteurDeCarreau` qui est un **gestionnaire** des événements `ActionEvent` qui s'occupe de traiter les clics sur les carreaux, permettant au joueur de les déplacer
+     - `estPartieTerminee` qui est une propriété booléenne qui indique si la partie est terminée
+     - `nombreDeMouvement` qui est une propriété entière qui indique le nombre de coups (déplacements) joués au cours de la partie courante
+     - `ecouteurDeCarreau` qui est un gestionnaire des événements `ActionEvent` qui s'occupe de traiter les clics sur les carreaux, permettant au joueur de les déplacer
 
 2. Écrire le constructeur public `TaquinBoard(int taille)` qui :
-     - affecte à la variable d'instance correspondante la `taille` passée en paramètre
-     - crée et initialise à `false` sa propriété `estPartieTerminee`
-     - crée et initialise à 0 sa propriété `nombreDeMouvement`
-     - initialise la liste (vide) des carreaux avec un objet `ArrayList`
-     - appelle la méthode `creerEcouteurDeCarreau()`
-     - appelle la méthode `initCarreaux()`
+     - Affecte à la variable d'instance correspondante la `taille` passée en paramètre
+     - Crée et initialise à `false` sa propriété `estPartieTerminee`
+     - Crée et initialise à 0 sa propriété `nombreDeMouvement`
+     - Initialise la liste (vide) des carreaux avec un objet `ArrayList`
+     - Appelle la méthode `creerEcouteurDeCarreau()`
+     - Appelle la méthode `initCarreaux()`
 
 3. Écrire la méthode `private void initCarreaux()` qui crée tous les carreaux du plateau. Pour cela, elle :
-     - initialise à 0 une variable locale contenant le numéro du carreau courant
-     - utilise deux boucles imbriquées, l'une pour les lignes et l'autre pour les colonnes, pour créer les `taille` x `taille` objets `Carreau`. 
+     - Initialise à 0 une variable locale contenant le numéro du carreau courant
+     - Utilise deux boucles imbriquées, l'une pour les lignes et l'autre pour les colonnes, pour créer les `taille` x `taille` objets `Carreau`. 
      Pour chaque carreau à créer, il faut :
           * incrémenter le numéro du carreau courant
           * créer l'objet `Carreau` avec son numéro et sa `Position` (courante et attendue)
           * ajouter le carreau au `TaquinBoard` (qui est un `GridPane`) à cette position dans le plateau
           * fixer `ecouteurDeCarreau` comme son gestionnaire de l'événement clic de souris
           * ajouter ce carreau à la liste `carreaux` du plateau
-     - et termine en faisant appel à la méthode `initCarreauVide()`
+     - Puis fait appel à la méthode `initCarreauVide()`
 
 4. Écrire la méthode `private void initCarreauVide()` qui :
-     - affecte à `carreauVide` le dernier carreau de la liste `carreaux`
-     - replace son texte par la chaîne vide
-     - désactive ce carreau, avec la méthode `setDisable(boolean)` héritée de `Button`
+     - Affecte à `carreauVide` le dernier carreau de la liste `carreaux`
+     - Remplace son texte par la chaîne vide
+     - Désactive ce carreau pour qu'il ne soit plus clicable, avec la méthode `setDisable(boolean)` héritée de `Button`
 
 5. Écrire la méthode `private void placer(Carreau carreau, Position position)` qui :
-     - place le carreau dans la nouvelle position donnée 
-     - met à jour la position du `carreau` dans la `GridPane` par  une contrainte fixée avec la méthode statique `GridPane.setConstraints()`.
+     - Place le carreau dans la nouvelle position donnée 
+     - Met à jour la position du `carreau` dans la `GridPane` par  une contrainte fixée avec la méthode statique `GridPane.setConstraints()`.
 
 6. Écrire la méthode `private void permuter(Carreau carreau1, Carreau carreau2)` qui permute les positions des deux carreaux 
 donnés en paramètres à l'aide de la méthode `placer()`, puis incrémente le nombre de mouvements.
 
 7. Écrire la méthode `private void deplacer(Carreau carreau)` qui déplace le `carreau` s'il est adjacent à la case vide. Dans cette méthode, vous devrez :
-    - créer une variable `positionCarreau` qui mémorise la position courante du carreau passé en paramètre.
-    - créer une variable `positionVide` qui mémorise la position de la case vide (`carreauVide`).
-    - créer des variables de type `Position` correspondant aux coordonnées à gauche, à droite, en haut et en bas de la position du carreau courant.
-    - tester si l'une de ces positions correspond à celle de la case vide. Si tel est le cas, les permuter.
+    - Créer une variable `positionCarreau` qui mémorise la position courante du carreau passé en paramètre.
+    - Créer une variable `positionVide` qui mémorise la position de la case vide (`carreauVide`).
+    - Créer des variables de type `Position` correspondant aux coordonnées à gauche, à droite, en haut et en bas de la position du carreau courant.
+    - Tester si l'une de ces positions correspond à celle de la case vide. Si tel est le cas, les permuter.
 
 8. Écrire la méthode `private void verifierFinDePartie()` qui fixe la propriété `estPartieTerminee` 
 comme vraie si tous les carreaux de la liste sont bien placés à leur position attendue en fin de partie.
 
-9. Écrire la méthode `private void creerEcouteurDeCarreau()` qui crée l'écouteur des carreaux (comme une expression lambda ou instance d'une classe à définir) qui doit :
-    - déterminer quel est le carreau à l'origine de l'événement
-    - déplace ce carreau
-    - vérifie si la partie est terminée
+9. Écrire la méthode `private void creerEcouteurDeCarreau()` qui crée l'écouteur des carreaux (comme une expression lambda ou une instance d'une classe à définir) qui :
+    - Détermine quel est le carreau à l'origine de l'événement
+    - Déplace ce carreau
+    - Vérifie si la partie est terminée
     
-Il ne vous est pas demandé d'écrire les méthodes restantes de cette classe.
+Il ne vous est pas demandé d'écrire les méthodes restantes de cette classe (cf. diagramme UML).
 
 ### Implémentation de la classe `StatusBar`
 La classe `StatusBar` est un composant graphique permettant d'afficher l'état de la partie en cours. 
-L'implémentation de cette classe vous est donnée ci-dessous :
+L'implémentation de cette classe vous est donnée ci-dessous (où la gestion et l'affichage de la durée ont été omis pour ne pas surcharger le texte):
 ```java
 public class StatusBar extends BorderPane {
     private Label labelNombreDeMouvement = new Label();
-    private Label labelTemps = new Label();
     private Label labelpartieTerminee = new Label();
 
     private IntegerProperty nombreDeMouvement = new SimpleIntegerProperty();
     private BooleanProperty estPartieTerminee = new SimpleBooleanProperty();
 
-    private LocalTime time = LocalTime.now();
-    private Timeline timer;
-    private  StringProperty clock = new SimpleStringProperty("00:00:00");
-    private  DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss");
-
     public StatusBar() {
-        creerAnimation();
         creerBindings();
 
         setLeft(labelNombreDeMouvement);
-        setRight(labelTemps);
         setCenter(labelpartieTerminee);
     }
 
-    private void creerAnimation() {
-        timer = new Timeline(new KeyFrame(Duration.ZERO, e-> 
-            clock.set(LocalTime.now().minusNanos(time.toNanoOfDay()).format(fmt))),
-                new KeyFrame(Duration.seconds(1)));
-        timer.setCycleCount(Animation.INDEFINITE);
-    }
 
-    private void creerBindings(){
-        labelTemps.textProperty().bind(Bindings.concat("Durée : ",clock));
+    private void creerBindings() {
         labelNombreDeMouvement.textProperty().bind(Bindings.concat("Mouvements : ",nombreDeMouvement));
         labelpartieTerminee.textProperty().bind(when(estPartieTerminee).then("Partie terminée !").otherwise(""));
     }
 
-    void nouvellePartie(){
-        time = LocalTime.now();
-        timer.playFromStart();
+    void nouvellePartie() {
+        ...
     }
 
     public IntegerProperty nombreDeMouvementProperty() {
@@ -224,8 +208,8 @@ charger la vue principale et de l'ajouter à la scène. Cette classe est une app
 
 1. Écrire une méthode `main` aussi réduite que possible pour lancer l’exécution de l'application.
 
-2. Écrire la méthode `public void start(Stage primaryStage)`. Elle devra :
-    - Modifier le titre de la fenêtre en "Taquin".
-    - Créer un objet `TaquinIHM`
-    - l'Ajouter le comme racine du graphe de scène.
-    - Rendre visible le stage.
+2. Écrire la méthode `public void start(Stage primaryStage)` qui :
+    - Modifie le titre de la fenêtre en "Taquin".
+    - Crée un objet `TaquinIHM`
+    - L'ajoute le comme racine du graphe de scène.
+    - Rend le stage visible.
