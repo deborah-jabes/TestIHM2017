@@ -27,8 +27,8 @@ public class Location {
         return "Location{" + "x=" + x + ", y=" + y + '}';
     }
 
-    public boolean isValidFor(int gridSize) {
-        return x >= 0 && x < gridSize && y >= 0 && y < gridSize;
+    public boolean estValidePour(int taille) {
+        return x >= 0 && x < taille && y >= 0 && y < taille;
     }
 
     @Override

@@ -37,7 +37,15 @@ Le résultat attendu devra ressembler à la fenêtre suivante :
 
 ![IHM](src/main/resources/assets/screenshoot.png)
 
+### Implémentation de la classe `Carreau`
 
+### Implémentation de la classe `TaquinBoard`
+
+### Implémentation de la classe `StatusBar`
+
+### Implémentation de la classe `TaquinIHM`
+
+### Implémentation de la classe `TaquinMain`
 
 
 

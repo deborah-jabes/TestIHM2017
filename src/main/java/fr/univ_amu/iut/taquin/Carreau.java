@@ -6,12 +6,14 @@ import javafx.scene.control.Button;
 public class Carreau extends Button {
     private Integer value;
     private Location location;
+    private Location locationAttendue;
 
 
     public Carreau(Integer value, Location location) {
         final int squareSize = TaquinBoard.CELL_SIZE - 13;
         this.value = value;
         this.location = location;
+        this.locationAttendue = location;
 
         setMinSize(squareSize, squareSize);
         setMaxSize(squareSize, squareSize);
@@ -34,8 +36,12 @@ public class Carreau extends Button {
         this.location = location;
     }
 
+    public boolean estBienPlace() {
+        return locationAttendue.equals(location);
+    }
+
     @Override
     public String toString() {
-        return "Tile{" + "value=" + value + ", location=" + location + '}';
+        return "Carreau{" + "value=" + value + ", location=" + location + '}';
     }
 }

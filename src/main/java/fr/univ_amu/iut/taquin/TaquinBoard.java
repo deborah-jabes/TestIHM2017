@@ -10,12 +10,16 @@ import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class TaquinBoard extends GridPane {
-    public static final int CELL_SIZE = 100;
+
+    public static final int CELL_SIZE = 200;
     private List<Carreau> carreaux;
     private int taille;
+
     private Carreau carreauVide;
+
     private BooleanProperty estPartieTerminee;
 
     private IntegerProperty nombreDeMouvement;
@@ -24,6 +28,7 @@ public class TaquinBoard extends GridPane {
         Carreau carreau = (Carreau) event.getSource();
         System.out.println("Déplacement de "+ carreau);
         deplacer(carreau);
+        verifierFinDePartie();
     };
 
     public TaquinBoard(int taille) {
@@ -31,16 +36,11 @@ public class TaquinBoard extends GridPane {
         estPartieTerminee = new SimpleBooleanProperty(false);
         nombreDeMouvement = new SimpleIntegerProperty(0);
         carreaux = new ArrayList<>(taille*taille);
-        creerBindings();
+        initCarreaux();
     }
 
     public BooleanProperty estPartieTermineeProperty() {
         return estPartieTerminee;
-    }
-
-    private void creerBindings() {
-
-
     }
 
     private void initCarreaux() {
@@ -54,12 +54,16 @@ public class TaquinBoard extends GridPane {
             }
         }
 
+        initCarreauVide();
+    }
+
+    private void initCarreauVide() {
         carreauVide = carreaux.get(taille*taille-1);
         carreauVide.setText("");
+        carreauVide.setDisable(true);
     }
 
     void nouvellePartie() {
-        initCarreaux();
         melanger();
         estPartieTerminee.set(false);
         nombreDeMouvement.set(0);
@@ -79,7 +83,7 @@ public class TaquinBoard extends GridPane {
     }
 
     private boolean estDeplacementPossible(Location locationAdjacente, Location locationVide) {
-        return locationAdjacente.isValidFor(taille) && locationAdjacente.equals(locationVide);
+        return locationAdjacente.estValidePour(taille) && locationAdjacente.equals(locationVide);
     }
 
     private void permuter(Carreau carreau1, Carreau carreau2) {
@@ -90,6 +94,16 @@ public class TaquinBoard extends GridPane {
         deplacer(carreau2, location1);
 
         nombreDeMouvement.set(nombreDeMouvement.get() + 1);
+    }
+
+    private void verifierFinDePartie() {
+        boolean estDansLOrdre = true;
+        for (Carreau carreau : carreaux) {
+            if (!carreau.estBienPlace())
+                estDansLOrdre = false;
+        }
+
+        estPartieTerminee.set(estDansLOrdre);
     }
 
     private void deplacer(Carreau carreau, Location location) {
@@ -103,6 +117,11 @@ public class TaquinBoard extends GridPane {
     }
 
     private void melanger() {
+        Random random = new Random(System.currentTimeMillis());
+        for (int i = 0; i < taille * taille * 100; i++) {
+            int indiceAleatoire = random.nextInt(taille * taille);
+            deplacer(carreaux.get(indiceAleatoire));
+        }
     }
 
     public int getNombreDeMouvement() {

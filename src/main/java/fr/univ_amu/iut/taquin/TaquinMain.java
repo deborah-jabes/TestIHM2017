@@ -7,22 +7,20 @@ import javafx.stage.Stage;
 
 public class TaquinMain extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Taquin");
 
-        try {
-            TaquinIHM ihm = new TaquinIHM();
-            ihm.setStageAndSetupListeners(primaryStage);
-            primaryStage.setScene(new Scene(ihm));
+        TaquinIHM ihm = new TaquinIHM();
 
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+        ihm.setStageAndSetupListeners(primaryStage);
 
-    public static void main(String[] args) {
-        launch(args);
+        primaryStage.setScene(new Scene(ihm));
+        primaryStage.show();
+
     }
 }

@@ -22,8 +22,8 @@ public class StatusBar extends BorderPane {
 
     private IntegerProperty nombreDeMouvement;
     private BooleanProperty estPartieTerminee;
-    private LocalTime time;
 
+    private LocalTime time;
     private Timeline timer;
     private  StringProperty clock;
     private  DateTimeFormatter fmt;
