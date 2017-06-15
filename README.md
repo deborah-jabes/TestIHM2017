@@ -157,11 +157,6 @@ changement qui appelle la méthode `afficheDialogFinDePartie()` lorsque la parti
     - Placer la barre de statut en bas de la fenêtre.
     - Créer les bindings.
     - Lancer une nouvelle partie.
-    
-7. Écrire la méthode `public void updateStatus()` qui s'occupe de mettre à jour la barre de statut à partir de l'état courant de l'othellier. Cette méthode devra :
-    - tout d'abord vérifier si le `joueurCourant` de l'othellier est positionné à `PERSONNE` pour ouvrir un dialogue annonçant la fin de partie
-    - changer le `joueurCourant` de la `statusBar`
-    - appeler la méthode `updateStatus()` de la `statusBar`
 
 ### Implémentation de la classe `TaquinMain`
 
