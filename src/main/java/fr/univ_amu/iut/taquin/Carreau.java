@@ -6,16 +6,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class Carreau extends Button {
-    private Integer value;
-    private Location location;
-    private Location locationAttendue;
+    private Integer numero;
+    private Position position;
+    private Position positionVoulue;
 
 
-    public Carreau(Integer value, Location location) {
-        final int squareSize = TaquinBoard.CELL_SIZE - 13;
-        this.value = value;
-        this.location = location;
-        this.locationAttendue = location;
+    public Carreau(Integer numero, Position position) {
+        final int squareSize = TaquinBoard.CELL_SIZE;
+        this.numero = numero;
+        this.position = position;
+        this.positionVoulue = position;
 
         setMinSize(squareSize, squareSize);
         setMaxSize(squareSize, squareSize);
@@ -23,28 +23,28 @@ public class Carreau extends Button {
 
         setAlignment(Pos.CENTER);
 
-        setText(value.toString());
+        setText(numero.toString());
         setFont(Font.font("Monospace", FontWeight.BOLD, 20));
     }
 
-    public Integer getValue() {
-        return value;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public Location getLocation() {
-        return location;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public boolean estBienPlace() {
-        return locationAttendue.equals(location);
+        return positionVoulue.equals(position);
     }
 
     @Override
     public String toString() {
-        return "Carreau{" + "value=" + value + ", location=" + location + '}';
+        return "Carreau{" + "numero=" + numero + ", position=" + position + '}';
     }
 }

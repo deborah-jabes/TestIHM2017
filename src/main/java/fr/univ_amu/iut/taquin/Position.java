@@ -1,17 +1,17 @@
 package fr.univ_amu.iut.taquin;
 
-public class Location {
+public class Position {
 
     private final int x;
     private final int y;
 
-    public Location(int x, int y) {
+    public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Location offset(Direction direction) {
-        return new Location(x + direction.getX(), y + direction.getY());
+    public Position offset(Direction direction) {
+        return new Position(x + direction.getX(), y + direction.getY());
     }
 
     public int getX() {
@@ -24,7 +24,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" + "x=" + x + ", y=" + y + '}';
+        return "Position{" + "x=" + x + ", y=" + y + '}';
     }
 
     public boolean estValidePour(int taille) {
@@ -36,7 +36,7 @@ public class Location {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Location location = (Location) o;
+        Position location = (Position) o;
 
         return x == location.x && y == location.y;
     }
