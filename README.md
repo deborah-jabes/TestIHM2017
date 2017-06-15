@@ -19,7 +19,7 @@ L'image ci-dessous, illustre un jeu du taquin résolu :
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/15-puzzle.svg/768px-15-puzzle.svg.png)
 
-### Travail à réalisercarreaux
+### Travail à réaliser
 Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
 - Un objet `TaquinMain` est une application JavaFX permettant de jouer au Taquin.
 - Un objet `TaquinIHM` est une scène de jeu avec laquelle les joueurs interagiront pour faire une partie à tour de rôle.
