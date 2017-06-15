@@ -48,19 +48,19 @@ Chaque carreau est numéroté de 1 à 15, numéro de sa position voulue dans le 
 1. Écrivez la classe `Carreau` qui sera publique et étendra `Button`. Elle possèdera les données membres privées suivantes :
      - `value` de type `Integer` qui correspond au numéro du carreau. 
      - `position` de type `Position`, la position courante dans le plateau.
-     - `positionVoulue` de type `Position`, la position finale voulue pour résoudre le jeu.
+     - `positionAttendue` de type `Position`, la position attendue en fin de jeu.
 
 2. Écrivez un constructeur publique `Carreau(Integer numero, Position position)` qui : 
     - assigne les données membres locales correspondantes aux paramètres donnés.
-    - fixe la largeur et hauteur du `Carreau` à `TaquinBoard.CELL_SIZE`, soit la taille d'une cellule. On pourra pour cela utiliser les méthodes de `Button` `setMinSize()`, `setMaxSize()` et `setPrefSize()`.
+    - fixe la largeur et hauteur du `Carreau` à `TaquinBoard.CELL_SIZE`, soit la taille d'une cellule. Utilisez les méthodes de `Button` : `setMinSize()`, `setMaxSize()` et `setPrefSize()`.
     - fixe l'alignement du contenu du carreau au centre.
     - fixe comme texte du bouton le numéro du carreau courant.
 
-3. Écrivez les accesseurs publiques `getNumero()` et `getPosition()` qui renvoie leur donnée membre correspondante.
+3. Écrivez les accesseurs publiques `getNumero()` et `getPosition()` qui renvoient leur donnée membre correspondante.
 
-4. Écrivez le modifieur `setPosition(Position position)` qui assigne la donnée membre correspondante.
+4. Écrivez le modifieur publique `setPosition(Position position)` qui assigne la donnée membre correspondante.
 
-5. Écrivez la méthode `estBienPlace()` qui retourne vrai si le carreau est positionné à sa position finale voulue.
+5. Écrivez la méthode publique `estBienPlace()` qui indique si le carreau est positionné à la position attendue en fin de partie.
 
 
 ### Implémentation de la classe `TaquinBoard`
@@ -177,11 +177,6 @@ changement qui appelle la méthode `afficheDialogFinDePartie()` lorsque la parti
     - Placer la barre de statut en bas de la fenêtre.
     - Créer les bindings.
     - Lancer une nouvelle partie.
-    
-7. Écrire la méthode `public void updateStatus()` qui s'occupe de mettre à jour la barre de statut à partir de l'état courant de l'othellier. Cette méthode devra :
-    - tout d'abord vérifier si le `joueurCourant` de l'othellier est positionné à `PERSONNE` pour ouvrir un dialogue annonçant la fin de partie
-    - changer le `joueurCourant` de la `statusBar`
-    - appeler la méthode `updateStatus()` de la `statusBar`
 
 ### Implémentation de la classe `TaquinMain`
 
