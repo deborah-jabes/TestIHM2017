@@ -103,8 +103,47 @@ public class StatusBar extends BorderPane {
 ```
 
 ### Implémentation de la classe `TaquinIHM`
+La classe `TaquinIHM` représente le contenu de la fenêtre principale du Jeu (le noeud racine de la scène). En plus du 
+plateau situé au centre, cette fenêtre contient une barre de menu en haut et une barre de statut en bas. La barre de menu 
+contient un menu "Jeu" constitué d'une entrée "Nouvelle Partie" et d'une entrée "Quitter".
+
+1. Écrire la déclaration d’une classe `TaquinIHM`, sous-classe de `BorderPane`, réduite, pour commencer, à 
+ses variables d’instance, toutes privées :
+    - `taille` de type `int` représente la taille du plateau de jeu.
+    - `statusBar` de type `StatusBar` est l'objet matérialisant la barre de statut
+    - `taquinBoard` de type `taquinBoard` est l'objet plateau de jeu
+    - `menuBar` de type `MenuBar` est la barre de menu de notre jeu
+
+2. Écrire la méthode `void nouvellePartie()` qui s'occupe de créer une nouvelle partie en effectuant le bon traitement 
+sur le plateau de jeu et sur la barre de statut (regarder le diagramme UML pour trouver les méthodes à appeler).
+
+3. Écrire la méthode `private Menu creerMenuJeu()` qui crée le menu "Jeu". Ce menu devra être constitué de deux items, 
+un premier pour l'entrée "Nouvelle Partie" et un second pour "Quitter". Ne pas oublier d'ajouter un écouteur d'action 
+(de la même façon que pour un bouton). "Nouvelle Partie" se contente d'appeler la méthode `nouvellePartie()` et "Quitter"
+termine proprement de l'application.
+
+4. Écrire la méthode `private MenuBar creerBarreDeMenu()` qui s'occupe de créer la barre de menu contenant que le menu "Jeu".
+
+5. Écrire la méthode `private void creerBindings()` qui s'occupe de créer tous les bindings entre les différents 
+composants de notre IHM. Cette méthode devra, lier les propriétés qui ont le même nom dans les classes `StatusBar` 
+et `TaquinBoard`. Sur la propriété `estPartieTerminee` de la donnée membre `taquinBoard`, ajouter un écouteur de 
+changement qui appelle la méthode `afficheDialogFinDePartie()` lorsque la partie est terminée. 
+
+6. Écrire le constructeur par défaut de la classe `TaquinIHM`. Ce constructeur devra :
+    - Initialiser correctement les différentes données membres.
+    - Ajouter la barre de menu.
+    - Placer le plateau de jeu au centre de la fenêtre.
+    - Placer la barre de statut en bas de la fenêtre.
+    - Créer les bindings.
+    - Lancer une nouvelle partie.
+    
+7. Écrire la méthode `public void updateStatus()` qui s'occupe de mettre à jour la barre de statut à partir de l'état courant de l'othellier. Cette méthode devra :
+    - tout d'abord vérifier si le `joueurCourant` de l'othellier est positionné à `PERSONNE` pour ouvrir un dialogue annonçant la fin de partie
+    - changer le `joueurCourant` de la `statusBar`
+    - appeler la méthode `updateStatus()` de la `statusBar`
 
 ### Implémentation de la classe `TaquinMain`
 
+1. Écrivez une méthode `main` aussi réduite que possible pour lancer l’exécution de tout cela.
 
 
