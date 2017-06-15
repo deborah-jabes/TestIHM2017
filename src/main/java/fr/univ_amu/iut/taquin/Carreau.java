@@ -4,16 +4,16 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 
 public class Carreau extends Button {
-    private Integer value;
-    private Location location;
-    private Location locationAttendue;
+    private Integer numero;
+    private Position position;
+    private Position positionVoulue;
 
 
-    public Carreau(Integer value, Location location) {
+    public Carreau(Integer numero, Position location) {
         final int squareSize = TaquinBoard.CELL_SIZE - 13;
-        this.value = value;
-        this.location = location;
-        this.locationAttendue = location;
+        this.numero = numero;
+        this.position = location;
+        this.positionVoulue = location;
 
         setMinSize(squareSize, squareSize);
         setMaxSize(squareSize, squareSize);
@@ -21,27 +21,27 @@ public class Carreau extends Button {
 
         setAlignment(Pos.CENTER);
 
-        setText(value.toString());
+        setText(numero.toString());
     }
 
-    public Integer getValue() {
-        return value;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public Location getLocation() {
-        return location;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public boolean estBienPlace() {
-        return locationAttendue.equals(location);
+        return positionVoulue.equals(position);
     }
 
     @Override
     public String toString() {
-        return "Carreau{" + "value=" + value + ", location=" + location + '}';
+        return "Carreau{" + "numero=" + numero + ", position=" + position + '}';
     }
 }

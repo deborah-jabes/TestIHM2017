@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class TaquinBoard extends GridPane {
 
-    public static final int CELL_SIZE = 200;
+    public static final int CELL_SIZE = 100;
     private List<Carreau> carreaux;
     private int taille;
 
@@ -47,7 +47,7 @@ public class TaquinBoard extends GridPane {
         int numeroCarreau = 0;
         for (int row = 0; row < taille; row++) {
             for (int col = 0; col < taille; col++) {
-                Carreau carreau = new Carreau(++numeroCarreau, new Location(col,row));
+                Carreau carreau = new Carreau(++numeroCarreau, new Position(col,row));
                 this.add(carreau, col, row);
                 carreau.setOnAction(ecouteurDeCarreau);
                 carreaux.add(carreau);
@@ -70,11 +70,11 @@ public class TaquinBoard extends GridPane {
     }
 
     private void deplacer(Carreau carreau){
-        Location locationCarreau = carreau.getLocation();
-        Location locationVide = carreauVide.getLocation();
+        Position locationCarreau = carreau.getPosition();
+        Position locationVide = carreauVide.getPosition();
 
         for(Direction direction : Direction.values()){
-            Location locationAdjacente = locationCarreau.offset(direction);
+            Position locationAdjacente = locationCarreau.offset(direction);
 
             if(estDeplacementPossible(locationAdjacente, locationVide)){
                 permuter(carreau, carreauVide);
@@ -82,13 +82,13 @@ public class TaquinBoard extends GridPane {
         }
     }
 
-    private boolean estDeplacementPossible(Location locationAdjacente, Location locationVide) {
+    private boolean estDeplacementPossible(Position locationAdjacente, Position locationVide) {
         return locationAdjacente.estValidePour(taille) && locationAdjacente.equals(locationVide);
     }
 
     private void permuter(Carreau carreau1, Carreau carreau2) {
-        Location location1 = carreau1.getLocation();
-        Location location2 = carreau2.getLocation();
+        Position location1 = carreau1.getPosition();
+        Position location2 = carreau2.getPosition();
 
         deplacer(carreau1, location2);
         deplacer(carreau2, location1);
@@ -106,14 +106,14 @@ public class TaquinBoard extends GridPane {
         estPartieTerminee.set(estDansLOrdre);
     }
 
-    private void deplacer(Carreau carreau, Location location) {
+    private void deplacer(Carreau carreau, Position location) {
         System.out.println(carreau + " se déplace en "+location);
-        carreau.setLocation(location);
+        carreau.setPosition(location);
         placer(carreau);
     }
 
     private void placer(Carreau carreau){
-        GridPane.setConstraints(carreau, carreau.getLocation().getX(), carreau.getLocation().getY());
+        GridPane.setConstraints(carreau, carreau.getPosition().getX(), carreau.getPosition().getY());
     }
 
     private void melanger() {
