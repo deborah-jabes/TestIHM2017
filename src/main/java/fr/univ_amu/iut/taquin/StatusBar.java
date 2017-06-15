@@ -68,20 +68,11 @@ public class StatusBar extends BorderPane {
         timer.playFromStart();
     }
 
-    public int getNombreDeMouvement() {
-        return nombreDeMouvement.get();
-    }
-
     public IntegerProperty nombreDeMouvementProperty() {
         return nombreDeMouvement;
-    }
-
-    public boolean isEstPartieTerminee() {
-        return estPartieTerminee.get();
     }
 
     public BooleanProperty estPartieTermineeProperty() {
         return estPartieTerminee;
     }
-
 }

@@ -15,7 +15,7 @@ public class TaquinIHM extends BorderPane{
 
     private MenuBar menuBar;
 
-    private int taille = 4;
+    private int taille = 5;
 
     public TaquinIHM() {
         initialize();
@@ -24,10 +24,12 @@ public class TaquinIHM extends BorderPane{
         this.setTop(menuBar);
         this.setCenter(taquinBoard);
         this.setBottom(statusBar);
+        nouvellePartie();
     }
 
     private void creerBindings() {
-
+        statusBar.estPartieTermineeProperty().bind(taquinBoard.estPartieTermineeProperty());
+        statusBar.nombreDeMouvementProperty().bind(taquinBoard.nombreDeMouvementProperty());
     }
 
     private void initialize() {
@@ -62,7 +64,7 @@ public class TaquinIHM extends BorderPane{
     }
 
     private void afficheDialogFinDePartie() {
-        String messageFinDePartie = "";
+        String messageFinDePartie = "Partie terminée en " + taquinBoard.getNombreDeMouvement() + " mouvements";
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Fin de partie");
         alert.setContentText(messageFinDePartie);

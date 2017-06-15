@@ -1,6 +1,9 @@
 package fr.univ_amu.iut.taquin;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
@@ -13,8 +16,9 @@ public class TaquinBoard extends GridPane {
     private List<Carreau> carreaux;
     private int taille;
     private Carreau carreauVide;
-
     private BooleanProperty estPartieTerminee;
+
+    private IntegerProperty nombreDeMouvement;
 
     private final EventHandler<ActionEvent> ecouteurDeCarreau = event -> {
         Carreau carreau = (Carreau) event.getSource();
@@ -24,12 +28,18 @@ public class TaquinBoard extends GridPane {
 
     public TaquinBoard(int taille) {
         this.taille = taille;
+        estPartieTerminee = new SimpleBooleanProperty(false);
+        nombreDeMouvement = new SimpleIntegerProperty(0);
         carreaux = new ArrayList<>(taille*taille);
-        initCarreaux();
         creerBindings();
     }
 
+    public BooleanProperty estPartieTermineeProperty() {
+        return estPartieTerminee;
+    }
+
     private void creerBindings() {
+
 
     }
 
@@ -51,6 +61,8 @@ public class TaquinBoard extends GridPane {
     void nouvellePartie() {
         initCarreaux();
         melanger();
+        estPartieTerminee.set(false);
+        nombreDeMouvement.set(0);
     }
 
     private void deplacer(Carreau carreau){
@@ -76,6 +88,8 @@ public class TaquinBoard extends GridPane {
 
         deplacer(carreau1, location2);
         deplacer(carreau2, location1);
+
+        nombreDeMouvement.set(nombreDeMouvement.get() + 1);
     }
 
     private void deplacer(Carreau carreau, Location location) {
@@ -89,5 +103,13 @@ public class TaquinBoard extends GridPane {
     }
 
     private void melanger() {
+    }
+
+    public int getNombreDeMouvement() {
+        return nombreDeMouvement.get();
+    }
+
+    public IntegerProperty nombreDeMouvementProperty() {
+        return nombreDeMouvement;
     }
 }
