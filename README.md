@@ -15,6 +15,7 @@ L'image ci-dessous, illustre un jeu du taquin résolu :
 ### Travail à réaliser
 
 L'IHM que vous allez en partie réaliser ressemblera à la fenêtre suivante :
+
 ![IHM](src/main/resources/assets/taquin_screenshot.png)
 
 L'application définit ainsi plusieurs types d'objets :
@@ -27,6 +28,7 @@ L'application définit ainsi plusieurs types d'objets :
 
 
 Le diagramme UML suivant donne un aperçu synthétique de la structure des classes de l'application. Il n'est pas nécessaire de l'étudier pour l'instant, mais il vous sera très utile pour retrouver les données membres et méthodes des différentes classes.
+
 ![UML](src/main/resources/diagram.png)
 
 L'objectif de ce test est d'évaluer votre capacité à écrire une IHM à l'aide du langage Java, les méthodes complexes car trop algorithmiques n'auront pas à être implémentées. Vous pourrez retrouver une proposition de correction à l'adresse suivante : https://github.com/IUTInfoAix-m2105/TestIHM2017/
