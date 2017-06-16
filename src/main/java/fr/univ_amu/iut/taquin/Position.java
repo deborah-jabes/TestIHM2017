@@ -10,10 +10,6 @@ public class Position {
         this.y = y;
     }
 
-    public Position offset(Direction direction) {
-        return new Position(x + direction.getX(), y + direction.getY());
-    }
-
     public int getX() {
         return x;
     }
@@ -25,10 +21,6 @@ public class Position {
     @Override
     public String toString() {
         return "Position{" + "x=" + x + ", y=" + y + '}';
-    }
-
-    public boolean estValidePour(int taille) {
-        return x >= 0 && x < taille && y >= 0 && y < taille;
     }
 
     @Override

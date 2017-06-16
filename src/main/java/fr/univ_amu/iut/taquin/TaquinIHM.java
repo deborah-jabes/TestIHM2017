@@ -9,13 +9,10 @@ import java.util.Optional;
 
 public class TaquinIHM extends BorderPane{
 
+    private static final int TAILLE = 4;
     private StatusBar statusBar;
-
     private TaquinBoard taquinBoard;
-
     private MenuBar menuBar;
-
-    private int taille = 4;
 
     public TaquinIHM() {
         initialize();
@@ -39,7 +36,7 @@ public class TaquinIHM extends BorderPane{
 
     private void initialize() {
         statusBar = new StatusBar();
-        taquinBoard = new TaquinBoard(taille);
+        taquinBoard = new TaquinBoard(TAILLE);
         menuBar = creerBarreDeMenu();
     }
 

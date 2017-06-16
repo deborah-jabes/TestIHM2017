@@ -8,18 +8,18 @@ import javafx.scene.text.FontWeight;
 public class Carreau extends Button {
     private Integer numero;
     private Position position;
-    private Position positionVoulue;
+    private Position positionAttendue;
 
 
     public Carreau(Integer numero, Position position) {
-        final int squareSize = TaquinBoard.CELL_SIZE;
+        final int tailleCarreau = TaquinBoard.TAILLE_CASE;
         this.numero = numero;
         this.position = position;
-        this.positionVoulue = position;
+        this.positionAttendue = new Position(position.getX(), position.getY());
 
-        setMinSize(squareSize, squareSize);
-        setMaxSize(squareSize, squareSize);
-        setPrefSize(squareSize, squareSize);
+        setMinSize(tailleCarreau, tailleCarreau);
+        setMaxSize(tailleCarreau, tailleCarreau);
+        setPrefSize(tailleCarreau, tailleCarreau);
 
         setAlignment(Pos.CENTER);
 
@@ -40,7 +40,7 @@ public class Carreau extends Button {
     }
 
     public boolean estBienPlace() {
-        return positionVoulue.equals(position);
+        return positionAttendue.equals(position);
     }
 
     @Override

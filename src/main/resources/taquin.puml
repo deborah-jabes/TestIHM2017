@@ -1,10 +1,10 @@
 @startuml
 class Carreau {
-    - value : Integer;
+    - numero : Integer;
     - position : Position;
     - positionAttendue : Position;
     + Carreau(value, position)
-    + getValue() : Integer
+    + getNumero() : Integer
     + getPosition() : Position
     + setPosition(position)
     + estBienPlace() : boolean
