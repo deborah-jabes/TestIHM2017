@@ -173,14 +173,14 @@ Pour simplifier, la case vide sera matérialisée par un carreau particulier, di
           * incrémenter le numéro du carreau courant
           * créer l'objet `Carreau` avec son numéro et sa `Position` (courante et attendue)
           * ajouter le carreau au `TaquinBoard` (qui est un `GridPane`) à cette position dans le plateau
-          * fixer `ecouteurDeCarreau` comme son gestionnaire de l'événement clic de souris
+          * fixer `ecouteurDeCarreau` comme son gestionnaire de l'événement clic de souris (actionnement du bouton)
           * ajouter ce carreau à la liste `carreaux` du plateau
      - Puis fait appel à la méthode `initCarreauVide()`
 
 4. Écrire la méthode `private void initCarreauVide()` qui :
      - Affecte à `carreauVide` le dernier carreau de la liste `carreaux`
      - Remplace son texte par la chaîne vide
-     - Désactive ce carreau pour qu'il ne soit plus clicable, avec la méthode `setDisable(boolean)` héritée de `Button`
+     - Désactive ce carreau pour qu'il ne soit plus cliquable, avec la méthode `setDisable(boolean)` héritée de `Button`
 
 5. Écrire la méthode `private void placer(Carreau carreau, Position position)` qui :
      - Place le carreau dans la nouvelle position donnée 
